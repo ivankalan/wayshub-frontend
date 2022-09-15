@@ -42,24 +42,5 @@ pipeline{
                 }
             }
         }
-        stage('Pushing to Docker Hub (ivankalan12)') {
-            steps {
-                sshagent([credential]){
-                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
-                        cd ${directory}
-                        docker image push ${images}:${ivankaalan12/wayshub-fe}-latest
-                    exit    
-                    EOF"""
-                }
-            }
-        }
-        stage('Push') {
-            steps {
-               sh 'docker push ivankalan12/wayshub-fe:latest'
-               exit
-               EOF"""
-                }
-            }
-        }
     }
 }
