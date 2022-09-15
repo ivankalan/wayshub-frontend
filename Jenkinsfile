@@ -1,4 +1,4 @@
-def credential = ''
+def credential = 'github-ivankalan12'
 def server = 'kel2@103.183.74.32'
 def directory ='wayshub-frontend'
 def branch = 'main'
