@@ -6,19 +6,20 @@ def images = 'ivankalan12/wayshub-fe:latest'
 def rname = "origin"
 def cont = 'wayshub-fe'
 
-pipeline{
+pipeline {
     agent any
-    stages{
+
+    stages {
         stage('Repository Pull') {
             steps {
                 sshagent([credential]){
-                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
+                        sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
                         echo "Pulling Wayshub Backend Repository"
                         cd ${dir}
                         docker container stop ${cont}
                         git pull ${rname} ${branch}
                         exit
-                    EOF"""
+                        EOF"""
                 }    
             }    
         }    
