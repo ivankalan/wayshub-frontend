@@ -58,8 +58,8 @@ pipeline{
                sh 'docker push ivankalan12/wayshub-fe:latest'
                exit
                EOF"""
+                }
             }
-       }
-   }
+        }
+    }
 }
-
