@@ -39,6 +39,7 @@ pipeline {
                 sshagent([credential]){
                     sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
                     cd ${directory}
+		    docker tag ${images}:${env.BUILD_ID} ${images}:${env.BUILD_ID}-latest
                     docker-compose up -d
                     exit
                     EOF"""
