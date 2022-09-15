@@ -34,13 +34,24 @@ pipeline {
                 }    
             }    
         }    
-        stage('docker up'){
+        stage('Deploying Image'){
             steps{
                 sshagent([credential]){
                     sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
                     cd ${directory}
                     docker-compose up -d
                     exit
+                    EOF"""
+                }
+            }
+        }
+	        stage('Pushing to Docker Hub (ivankalan12)') {
+            steps {
+                sshagent([credential]){
+                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
+                        cd ${directory}
+                        docker image push ${images}:${env.BUILD_ID}-latest
+                        exit
                     EOF"""
                 }
             }
