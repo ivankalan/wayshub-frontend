@@ -15,7 +15,7 @@ pipeline {
                 sshagent([credential]){
                         sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
                         echo "Pulling Wayshub Backend Repository"
-                        cd ${dir}
+                        cd ${directory}
                         docker container stop ${cont}
                         git pull ${rname} ${branch}
                         exit
