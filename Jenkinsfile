@@ -10,7 +10,7 @@ pipeline{
         stage('Docker compose down and pulling new images'){
             steps{
                 sshagent([credential]){
-                    sh """ssh -o StrictHostKeyChecking=no $ {server} << EOF
+                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
                     cd ${directory}
                     docker-compose down
                     docker system prune -f
@@ -23,7 +23,7 @@ pipeline{
         stage('Building Docker images'){
             steps{
                 sshagent([credential]){
-                    sh """ssh -o StrictHostKeyChecking=no $ {server} << EOF
+                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
                     cd ${directory}
                     docker build -t ${images} .
                     exit
@@ -34,7 +34,7 @@ pipeline{
         stage('docker up'){
             steps{
                 sshagent([credential]){
-                    sh """ssh -o StrictHostKeyChecking=no $ {server} << EOF
+                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
                     cd ${directory}
                     docker-compose up -d
                     exit
